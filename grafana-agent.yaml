@@ -1,0 +1,45 @@
+integrations:
+  prometheus_remote_write:
+    - basic_auth:
+        password: glc_eyJvIjoiOTc0MDk4IiwibiI6InN0YWNrLTc3MjQ1Mi1obC1yZWFkLXBvYy1sb2tpIiwiayI6IllUeDhoVEZjOFowbTZ6RGJoOTc3MjgzZiIsIm0iOnsiciI6InByb2QtdXMtZWFzdC0wIn19
+        username: 1252805
+      url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
+  agent:
+    enabled: true
+    relabel_configs:
+      - action: replace
+        source_labels:
+          - agent_hostname
+        target_label: instance
+      - action: replace
+        target_label: job
+        replacement: "integrations/agent-check"
+    metric_relabel_configs:
+      - action: keep
+        regex: (prometheus_target_.*|prometheus_sd_discovered_targets|agent_build.*|agent_wal_samples_appended_total|process_start_time_seconds)
+        source_labels:
+          - __name__
+
+metrics:
+  configs:
+  - name: integrations
+    remote_write:
+    - basic_auth:
+        password: glc_eyJvIjoiOTc0MDk4IiwibiI6InN0YWNrLTc3MjQ1Mi1obC1yZWFkLXBvYy1sb2tpIiwiayI6IllUeDhoVEZjOFowbTZ6RGJoOTc3MjgzZiIsIm0iOnsiciI6InByb2QtdXMtZWFzdC0wIn19
+        username: 1252805
+      url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
+    scrape_configs:
+    - job_name: nodejs
+      static_configs:
+        - targets: ['nest-app:8080']
+      relabel_configs:
+        - replacement: 'pmvs-nest'
+          target_label: instance
+      metric_relabel_configs:
+        - action: keep
+          regex: nodejs_active_handles_total|nodejs_active_requests_total|nodejs_eventloop_lag_p50_seconds|nodejs_eventloop_lag_p99_seconds|nodejs_eventloop_lag_seconds|nodejs_external_memory_bytes|nodejs_gc_duration_seconds_count|nodejs_gc_duration_seconds_sum|nodejs_heap_size_total_bytes|nodejs_heap_size_used_bytes|nodejs_heap_space_size_used_bytes|nodejs_version_info|process_cpu_seconds_total|process_cpu_system_seconds_total|process_cpu_user_seconds_total|process_resident_memory_bytes|process_start_time_seconds|http_request_duration_seconds|http_requests_total|http_requests_successful|http_requests_failed
+          source_labels:
+            - __name__
+  global:
+    scrape_interval: 15s
+  wal_directory: /tmp/grafana-agent-wal

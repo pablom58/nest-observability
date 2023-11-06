@@ -1,0 +1,28 @@
+version: "3.1"
+services:
+   nest-app:
+      container_name: nest-app
+      image: node:18.13.0
+      user: node
+      working_dir: '/app'
+      volumes:
+         - ./:/app
+      ports:
+         - 8080:8080
+      command: 'yarn start:dev'
+
+   collector:
+      image: otel/opentelemetry-collector-contrib
+      command: "--config=/conf/otel-config.yaml"
+      ports:
+         - "9464:9464"
+         - "4317:4317"
+         - "4318:4318"
+      volumes:
+         - ./otel-config.yaml:/conf/otel-config.yaml
+
+   grafana-agent:
+      image: grafana/agent
+      volumes:
+         - ./grafana-agent.yaml:/etc/grafana-agent.yaml
+      command: ["-config.file=/etc/grafana-agent.yaml"]
