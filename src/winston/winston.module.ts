@@ -12,7 +12,7 @@ const LokiTransport = require('winston-loki')
           host: "https://logs-prod-006.grafana.net",
           labels: { instance: 'pmvs-nest', app: 'pmvs-nest', service_name: 'pmvs-nest' },
           json: true,
-          basicAuth: "725448:glc_eyJvIjoiOTc0MDk4IiwibiI6InN0YWNrLTc3MjQ1Mi1obC1yZWFkLXBvYy1sb2tpIiwiayI6IllUeDhoVEZjOFowbTZ6RGJoOTc3MjgzZiIsIm0iOnsiciI6InByb2QtdXMtZWFzdC0wIn19",
+          basicAuth: "749286:glc_eyJvIjoiOTk2MDk4IiwibiI6InBvYy1ncmFmYW5hLXBvYy1ncmFmYW5hIiwiayI6IjI5NmVoSTNXNW41OUcwRmZmc2U4N3pCWCIsIm0iOnsiciI6InVzIn19",
           format: winston.format.json(),
           replaceTimestamp: true,
           onConnectionError: (err) => console.error(err),

@@ -913,30 +913,6 @@
     "@opentelemetry/semantic-conventions" "1.17.1"
     jaeger-client "^3.15.0"
 
-"@opentelemetry/exporter-metrics-otlp-grpc@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.yarnpkg.com/@opentelemetry/exporter-metrics-otlp-grpc/-/exporter-metrics-otlp-grpc-0.44.0.tgz#83d60cfeb497d8455cf35cf03e074b11308ea96b"
-  integrity sha512-7A2Ed7mKsa2edRUS8Au5susMNGHeiO/LNxc/XC73g848aBF8Xo8xlNWnV78fa+EYJZLzEKDzts4vpKgtwyvo/Q==
-  dependencies:
-    "@grpc/grpc-js" "^1.7.1"
-    "@opentelemetry/core" "1.17.1"
-    "@opentelemetry/exporter-metrics-otlp-http" "0.44.0"
-    "@opentelemetry/otlp-grpc-exporter-base" "0.44.0"
-    "@opentelemetry/otlp-transformer" "0.44.0"
-    "@opentelemetry/resources" "1.17.1"
-    "@opentelemetry/sdk-metrics" "1.17.1"
-
-"@opentelemetry/exporter-metrics-otlp-http@0.44.0":
-  version "0.44.0"
-  resolved "https://registry.yarnpkg.com/@opentelemetry/exporter-metrics-otlp-http/-/exporter-metrics-otlp-http-0.44.0.tgz#408c9e25e80eb80b209ead319d607acda6fa5826"
-  integrity sha512-OiEkP9XWbh5ufjnP+xe8EQ2LShMY5f1NYBm9W/BgLaHPtlMNZnR7JB1t6Ut4gaZ7LA/yFnyrB0TnZcxntpBZ3Q==
-  dependencies:
-    "@opentelemetry/core" "1.17.1"
-    "@opentelemetry/otlp-exporter-base" "0.44.0"
-    "@opentelemetry/otlp-transformer" "0.44.0"
-    "@opentelemetry/resources" "1.17.1"
-    "@opentelemetry/sdk-metrics" "1.17.1"
-
 "@opentelemetry/exporter-trace-otlp-grpc@0.44.0":
   version "0.44.0"
   resolved "https://registry.yarnpkg.com/@opentelemetry/exporter-trace-otlp-grpc/-/exporter-trace-otlp-grpc-0.44.0.tgz#67a2ea03ddfe1ef70384780eea1479bec0ee5e18"
@@ -1089,7 +1065,7 @@
     "@opentelemetry/core" "1.17.1"
     "@opentelemetry/resources" "1.17.1"
 
-"@opentelemetry/sdk-metrics@1.17.1", "@opentelemetry/sdk-metrics@^1.17.1":
+"@opentelemetry/sdk-metrics@1.17.1":
   version "1.17.1"
   resolved "https://registry.yarnpkg.com/@opentelemetry/sdk-metrics/-/sdk-metrics-1.17.1.tgz#9c4d13d845bcc82be8684050d9db7cce10f61580"
   integrity sha512-eHdpsMCKhKhwznxvEfls8Wv3y4ZBWkkXlD3m7vtHIiWBqsMHspWSfie1s07mM45i/bBCf6YBMgz17FUxIXwmZA==

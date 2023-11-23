@@ -10,14 +10,18 @@ import { Resource } from '@opentelemetry/resources';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-proto';
 import { B3Propagator } from '@opentelemetry/propagator-b3';
+import { diag, DiagConsoleLogger, DiagLogLevel } from '@opentelemetry/api';
 
 const oltpExporter = new OTLPTraceExporter({
-  url: "http://collector:4318/v1/traces"
+  url: "https://otlp-gateway-prod-us-east-0.grafana.net/otlp/v1/traces",
+  headers: {
+    Authorization: `Basic ${btoa('796290:glc_eyJvIjoiOTk2MDk4IiwibiI6InBvYy1ncmFmYW5hLXBvYy1ncmFmYW5hIiwiayI6IjI5NmVoSTNXNW41OUcwRmZmc2U4N3pCWCIsIm0iOnsiciI6InVzIn19')}`
+  }
 });
 
 const traceExporter = oltpExporter;
 
-api.propagation.setGlobalPropagator(new B3Propagator());
+diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ERROR);
 
 export const otelSDK = new NodeSDK({
   resource: new Resource({
@@ -29,6 +33,7 @@ export const otelSDK = new NodeSDK({
     new ExpressInstrumentation(),
     new NestInstrumentation(),
   ],
+  textMapPropagator: new B3Propagator(),
 });
 
 // gracefully shut down the SDK on process exit
